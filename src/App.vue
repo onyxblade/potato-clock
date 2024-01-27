@@ -1,10 +1,5 @@
 <template>
   <section>
-    <button v-if="!segments.currentSegment" @click="segments.createSegment">Create Segment</button>
-    <button v-else @click="segments.closeCurrentSegment">Close Current Segment</button>
-  </section>
-
-  <section>
     <table>
       <tr>
         <th>Opened at</th>
@@ -17,10 +12,12 @@
         <td>{{ durationString(segment.duration) }}</td>
       </tr>
     </table>
+    All segments total: {{ durationString(segments.totalDuration) }}
   </section>
 
-  <section>
-    <div>All segments total: {{ durationString(segments.totalDuration) }}</div>
+  <section class="buttons">
+    <button v-if="!segments.currentSegment" @click="segments.createSegment">Create Segment</button>
+    <button v-else @click="segments.closeCurrentSegment">Close Current Segment</button>
     <button @click="segments.clearAllSegments">Clear All Segments</button>
   </section>
 </template>
@@ -45,6 +42,7 @@ function durationString(duration) {
 table {
   border-collapse: collapse;
   border-spacing: 0px;
+  width: 100%;
 }
 table,
 th,
@@ -54,5 +52,9 @@ td {
 }
 section {
   margin-bottom: 12px;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
