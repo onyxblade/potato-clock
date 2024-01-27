@@ -16,8 +16,8 @@
       All segments total: {{ durationString(segments.totalDuration) }}
     </section>
 
-    <section class="buttons">
-      <button v-if="!segments.currentSegment" @click="segments.createSegment">Create Segment</button>
+    <section ref="buttons" class="buttons">
+      <button v-if="!segments.currentSegment" @click="createSegment">Create Segment</button>
       <button v-else @click="segments.closeCurrentSegment">Close Current Segment</button>
       <button @click="segments.clearAllSegments">Clear All Segments</button>
     </section>
@@ -25,9 +25,11 @@
 </template>
 
 <script setup>
+import { ref } from "vue"
 import useSegments from './composables/useSegments'
 
 const segments = useSegments()
+const buttons = ref()
 
 function durationString(duration) {
   const seconds = duration
@@ -37,6 +39,11 @@ function durationString(duration) {
   const minutesString = minutes ? `${minutes % 60}m ` : ''
   const hoursString = hours ? `${hours}h ` : ''
   return `${hoursString}${minutesString}${secondsString}`
+}
+
+function createSegment() {
+  segments.createSegment()
+  buttons.value.scrollIntoView()
 }
 </script>
 
