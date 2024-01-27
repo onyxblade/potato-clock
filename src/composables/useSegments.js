@@ -39,7 +39,7 @@ export default function useSegments() {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(list.map(x => x.toJSON())))
   }
 
-  const totalDuration = computed(() => list.map(x => x.duration).reduce((acc, x) => acc + x))
+  const totalDuration = computed(() => list.map(x => x.duration).reduce((acc, x) => acc + x, 0))
 
   return reactive({
     list,
