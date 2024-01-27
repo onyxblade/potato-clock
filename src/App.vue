@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, nextTick } from "vue"
 import useSegments from './composables/useSegments'
 
 const segments = useSegments()
@@ -43,7 +43,7 @@ function durationString(duration) {
 
 function createSegment() {
   segments.createSegment()
-  buttons.value.scrollIntoView()
+  nextTick(() => buttons.value.scrollIntoView())
 }
 </script>
 
