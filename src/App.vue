@@ -1,25 +1,27 @@
 <template>
-  <section>
-    <table>
-      <tr>
-        <th>Opened at</th>
-        <th>Closed at</th>
-        <th>Duration</th>
-      </tr>
-      <tr v-for="segment in segments.list">
-        <td>{{ segment.openedDateString }}</td>
-        <td>{{ segment.closedDateString }}</td>
-        <td>{{ durationString(segment.duration) }}</td>
-      </tr>
-    </table>
-    All segments total: {{ durationString(segments.totalDuration) }}
-  </section>
+  <main>
+    <section>
+      <table>
+        <tr>
+          <th>Opened at</th>
+          <th>Closed at</th>
+          <th>Duration</th>
+        </tr>
+        <tr v-for="segment in segments.list">
+          <td>{{ segment.openedDateString }}</td>
+          <td>{{ segment.closedDateString }}</td>
+          <td>{{ durationString(segment.duration) }}</td>
+        </tr>
+      </table>
+      All segments total: {{ durationString(segments.totalDuration) }}
+    </section>
 
-  <section class="buttons">
-    <button v-if="!segments.currentSegment" @click="segments.createSegment">Create Segment</button>
-    <button v-else @click="segments.closeCurrentSegment">Close Current Segment</button>
-    <button @click="segments.clearAllSegments">Clear All Segments</button>
-  </section>
+    <section class="buttons">
+      <button v-if="!segments.currentSegment" @click="segments.createSegment">Create Segment</button>
+      <button v-else @click="segments.closeCurrentSegment">Close Current Segment</button>
+      <button @click="segments.clearAllSegments">Clear All Segments</button>
+    </section>
+  </main>
 </template>
 
 <script setup>
@@ -52,6 +54,10 @@ td {
 }
 section {
   margin-bottom: 12px;
+}
+main {
+  width: 100%;
+  max-width: 500px;
 }
 .buttons {
   display: flex;
